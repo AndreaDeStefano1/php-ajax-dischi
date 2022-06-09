@@ -27,35 +27,43 @@
         <div>
   
           <select 
-          v-model="selectedAuthor"
-          @change="filteredResearchForAuthor"
-          name="selectAuthor" id="">
+          v-model="selectedAuthor">
   
-            <OptionComp 
-            v-for="(author,index) in authorArray"
-            :key="`discAuthor-${index}`"
-            :value="author"
-            />
+           <option value="all" selected>All</option>
+           
   
           </select>
   
           <select 
-          v-model="selectedGenre"
-          @change="filteredResearchForGenre"
-          name="selectGenre" id="">
+          v-model="selectedGenre">
   
-            <OptionComp 
-            v-for="(genre,index) in genreArray"
-            :key="`discGenre-${index}`"
-            :value="genre"
-            />
+            <option value="all" selected>All</option>
   
           </select>
           
         </div>
       </nav>
     </div>
-    
+
+    <main class="py-5">
+
+      <div class="container disc-container d-flex flex-wrap justify-content-between">
+        
+        <div v-for="disc in discArray" class="card-container">
+          <div class="card-img">
+            <img :src="disc.poster" alt="ciao">
+          </div>
+          <div class="card-text pt-2">
+            <h4>{{disc.title}}</h4>
+            <h5>{{disc.author}}</h5>
+            <h6>{{disc.year}}</h6>
+          </div>
+        </div>
+  
+      </div>
+  
+    </main>
+
   </div>
   <script src="script/script.js"></script>
 </body>
