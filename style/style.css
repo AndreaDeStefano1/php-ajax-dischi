@@ -1,0 +1,10 @@
+.header{
+  background-color: #2e3a46;
+}
+select{
+  border-radius: 6px;
+  padding: 3px;
+}
+svg{
+  width: 40px;
+}

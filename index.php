@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/api.php';
+include __DIR__ . '/data-api/db.php';
  
 foreach ($encodedJson['response'] as  $disco) {
   
