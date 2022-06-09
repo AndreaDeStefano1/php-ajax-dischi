@@ -27,17 +27,22 @@
         <div>
   
           <select 
-          v-model="selectedAuthor">
-  
-           <option value="all" selected>All</option>
+          v-model="selectedAuthor"
+          @change="getApiFiltered()">
+
+            <option value="" selected>All</option>
+            <option v-for="author in authorArray" :value="author" selected>{{author}}</option>
+           
            
   
           </select>
   
           <select 
-          v-model="selectedGenre">
+          v-model="selectedGenre"
+          @change="getApiFiltered()">
   
-            <option value="all" selected>All</option>
+            <option value="" selected>All</option>
+            <option v-for="genre in genreArray" :value="genre" selected>{{genre}}</option>
   
           </select>
           
@@ -49,9 +54,9 @@
 
       <div class="container disc-container d-flex flex-wrap justify-content-between">
         
-        <div v-for="disc in discArray" class="card-container">
+        <div v-for="disc in discsArray" class="card-container">
           <div class="card-img">
-            <img :src="disc.poster" alt="ciao">
+            <img :src="disc.poster" alt="NUN CE STA">
           </div>
           <div class="card-text pt-2">
             <h4>{{disc.title}}</h4>

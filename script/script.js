@@ -1,10 +1,12 @@
 var app = new Vue({
   el: '#app',
   data: {
-    selectedAuthor: 'all',
-    selectedGenre: 'all',
-    discArray: [],
-    apiUrl: 'http://localhost/php-ajax-dischi/data-api/api.php'
+    selectedAuthor: '',
+    selectedGenre: '',
+    discsArray: [],
+    apiUrl: 'http://localhost/php-ajax-dischi/data-api/api.php?',
+    genreArray: [],
+    authorArray: []
 
   },
   mounted(){
@@ -12,10 +14,42 @@ var app = new Vue({
   },
   methods:{
     getApi(){
-      axios.get(this.apiUrl)
+      axios.get(this.apiUrl ,{
+        params: {
+          genre: this.selectedGenre,
+          author: this.selectedAuthor
+        }
+      })
       .then(res => {
-      
-        this.discArray = res.data.response
+        console.log(res.data);
+        this.discsArray = res.data.response
+        res.data.response.forEach(element => {
+          if(!this.genreArray.includes(element.genre)){
+            this.genreArray.push(element.genre)
+          }
+        });
+        res.data.response.forEach(element => {
+          if(!this.authorArray.includes(element.author)){
+            this.authorArray.push(element.author)
+          }
+        });
+      })
+    },
+    getApiFiltered(){
+      axios.get(this.apiUrl ,{
+        params: {
+          genre: this.selectedGenre,
+          author: this.selectedAuthor
+        }
+      })
+      .then(res => {
+        console.log(res.data);
+        this.discsArray = []
+
+        res.data.response.forEach(element => {
+          this.discsArray.push( element  )
+        });
+       
       })
     }
   }
